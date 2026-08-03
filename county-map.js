@@ -3,10 +3,7 @@
 // Denver, Colorado
 // ------------------------------------------------------
 
-const map = L.map('map').setView(
-    [39.7392, -104.9903],
-    11
-);
+const map = L.map('map');
 
 // ------------------------------------------------------
 // Carto Positron Basemap
@@ -31,14 +28,16 @@ fetch('https://gis-dev.digitolservices.com/webhook/mir-map')
     window.mapData = data;
     console.log(window.mapData);
 
-    L.geoJSON(window.mapData.county.geometry, {
-        style: {
-            color: '#0066cc',
-            weight: 2,
-            fill: false
-        }
-    }).addTo(map);
+const countyLayer = L.geoJSON(window.mapData.county.geometry, {
+    style: {
+        color: '#0066cc',
+        weight: 3,
+        fill: false
+    }
+}).addTo(map);
 
+map.fitBounds(countyLayer.getBounds());
+    
 L.geoJSON(window.mapData.commercialCore.geometry, {
     style: {
         color: '#ff8800',
