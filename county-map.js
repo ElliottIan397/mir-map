@@ -38,6 +38,17 @@ fetch('https://gis-dev.digitolservices.com/webhook/mir-map')
             fill: false
         }
     }).addTo(map);
+
+L.geoJSON(window.mapData.commercialCore.geometry, {
+    style: {
+        color: '#ff8800',
+        weight: 2,
+        fillColor: '#ffcc66',
+        fillOpacity: 0.25
+    }
+}).addTo(map);    
+
+    
 })
     .catch(error => {
         console.error('Map data error:', error);
