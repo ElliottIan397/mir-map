@@ -103,7 +103,8 @@ window.mapData.msps.forEach(msp => {
 
 });   // <-- closes the forEach()
 
-
+map.addLayer(clusters);
+    
 // ------------------------------------------------------
 // Legend
 // ------------------------------------------------------
