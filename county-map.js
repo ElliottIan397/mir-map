@@ -1,3 +1,15 @@
+// ------------------------------------------------------
+// Digitol MIR Interactive County Map
+// ------------------------------------------------------
+
+async function initializeCountyMap() {
+
+const mapContainer = document.getElementById("market-map");
+
+if (!mapContainer) {
+    return;
+}
+
 /// ------------------------------------------------------
 // Digitol MIR Map Prototype
 // Denver, Colorado
@@ -214,3 +226,7 @@ legend.addTo(map);
 .catch(error => {
     console.error('Map data error:', error);
 });
+
+}
+
+initializeCountyMap();
