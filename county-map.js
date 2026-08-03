@@ -63,21 +63,22 @@ window.mapData.msps.forEach(msp => {
             fillOpacity: 1
         }
     )
-    .bindPopup(`
-        <b>${msp.title}</b><br>
-        SAS: ${msp.sas}<br>
-        Band: ${msp.structuralauthorityband}<br>
-        Segment: ${msp.segment}<br>
-        Rating: ${msp.rating} (${msp.user_rating_count} reviews)<br>
-        DA: ${msp.domain_authority}<br>
-        Backlinks: ${msp.backlinks}<br>
-        Pages: ${msp.pages_crawled}<br>
-        Link Propensity: ${msp.link_propensity}
-    `)
-    .addTo(map);
-
-});
-    
+.bindTooltip(`
+    <b>${msp.title}</b><br>
+    SAS: ${msp.sas}<br>
+    Band: ${msp.structuralauthorityband}<br>
+    Segment: ${msp.segment}<br>
+    Rating: ${msp.rating} (${msp.user_rating_count} reviews)<br>
+    DA: ${msp.domain_authority}<br>
+    Backlinks: ${msp.backlinks}<br>
+    Pages: ${msp.pages_crawled}<br>
+    Link Propensity: ${msp.link_propensity}
+`, {
+    sticky: true,
+    direction: 'top',
+    opacity: 0.95
+})
+.addTo(map);    
 })
     .catch(error => {
         console.error('Map data error:', error);
