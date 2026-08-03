@@ -78,8 +78,12 @@ window.mapData.msps.forEach(msp => {
     direction: 'top',
     opacity: 0.95
 })
-.addTo(map);    
-})
-    .catch(error => {
-        console.error('Map data error:', error);
-    });
+.addTo(map);
+
+});   // <-- closes the forEach()
+
+})      // <-- closes the .then(data => { ... })
+
+.catch(error => {
+    console.error('Map data error:', error);
+});
