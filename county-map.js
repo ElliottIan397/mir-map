@@ -58,8 +58,8 @@ window.mapData.msps.forEach(msp => {
         ],
         {
             radius: Math.max(3, msp.sas / 10),
-            color: '#0066cc',
-            fillColor: '#0066cc',
+            color: msp.band_color,
+            fillColor: msp.band_color,
             fillOpacity: 1
         }
     )
