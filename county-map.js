@@ -45,9 +45,27 @@ L.geoJSON(window.mapData.commercialCore.geometry, {
         weight: 2,
         fillColor: '#ffcc66',
         fillOpacity: 0.25
-    }
-}).addTo(map);    
+    },
 
+    onEachFeature: function(feature, layer) {
+
+        layer.bindTooltip(`
+            <b>${window.mapData.commercialCore.county} Commercial Core</b><br>
+            Radius: ${window.mapData.commercialCore.commercial_core_radius_miles} miles<br>
+            Businesses: ${window.mapData.commercialCore.commercial_core_enterprises}
+            (${window.mapData.commercialCore.commercial_core_enterprise_pct}%)<br>
+            Employees: ${window.mapData.commercialCore.commercial_core_employees.toLocaleString()}
+            (${window.mapData.commercialCore.commercial_core_employee_pct}%)<br>
+            MSP Competitors: ${window.mapData.commercialCore.competitor_count}
+        `, {
+            sticky: true,
+            direction: 'top',
+            opacity: 0.95
+        });
+
+    }
+
+}).addTo(map);
 console.log(window.mapData.msps[0]);    
 window.mapData.msps.forEach(msp => {
 
