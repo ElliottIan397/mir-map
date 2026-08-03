@@ -27,10 +27,18 @@ L.tileLayer(
 
 fetch('https://gis-dev.digitolservices.com/webhook/mir-map')
     .then(response => response.json())
-    .then(data => {
-        window.mapData = data;
-        console.log(window.mapData);
-    })
+.then(data => {
+    window.mapData = data;
+    console.log(window.mapData);
+
+    L.geoJSON(window.mapData.county.geometry, {
+        style: {
+            color: '#0066cc',
+            weight: 2,
+            fill: false
+        }
+    }).addTo(map);
+})
     .catch(error => {
         console.error('Map data error:', error);
     });
