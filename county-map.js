@@ -48,6 +48,7 @@ L.geoJSON(window.mapData.commercialCore.geometry, {
     }
 }).addTo(map);    
 
+console.log(window.mapData.msps[0]);    
 window.mapData.msps.forEach(msp => {
 
     L.circleMarker(
