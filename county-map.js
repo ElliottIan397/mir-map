@@ -28,7 +28,8 @@ L.tileLayer(
 fetch('https://gis-dev.digitolservices.com/webhook/mir-map')
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        window.mapData = data;
+        console.log(window.mapData);
     })
     .catch(error => {
         console.error('Map data error:', error);
