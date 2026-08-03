@@ -52,7 +52,10 @@ console.log(window.mapData.msps[0]);
 window.mapData.msps.forEach(msp => {
 
     L.circleMarker(
-        [msp.latitude, msp.longitude],
+        [
+            msp.geometry.coordinates[1],   // latitude
+            msp.geometry.coordinates[0]    // longitude
+        ],
         {
             radius: 5,
             color: '#0066cc',
