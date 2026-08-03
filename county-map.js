@@ -52,7 +52,7 @@ L.geoJSON(window.mapData.commercialCore.geometry, {
         layer.bindTooltip(`
             <b>${window.mapData.commercialCore.county} Commercial Core</b><br>
             Radius: ${window.mapData.commercialCore.commercial_core_radius_miles} miles<br>
-            Businesses: ${window.mapData.commercialCore.commercial_core_enterprises}
+            window.mapData.commercialCore.commercial_core_enterprises.toLocaleString()
             (${window.mapData.commercialCore.commercial_core_enterprise_pct}%)<br>
             Employees: ${window.mapData.commercialCore.commercial_core_employees.toLocaleString()}
             (${window.mapData.commercialCore.commercial_core_employee_pct}%)<br>
