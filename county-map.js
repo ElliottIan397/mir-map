@@ -57,7 +57,7 @@ window.mapData.msps.forEach(msp => {
             msp.geometry.coordinates[0]
         ],
         {
-            radius: 5,
+            radius: Math.max(3, msp.sas / 10),
             color: '#0066cc',
             fillColor: '#0066cc',
             fillOpacity: 1
