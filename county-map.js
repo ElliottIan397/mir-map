@@ -48,6 +48,19 @@ L.geoJSON(window.mapData.commercialCore.geometry, {
     }
 }).addTo(map);    
 
+window.mapData.msps.forEach(msp => {
+
+    L.circleMarker(
+        [msp.latitude, msp.longitude],
+        {
+            radius: 5,
+            color: '#0066cc',
+            fillColor: '#0066cc',
+            fillOpacity: 1
+        }
+    ).addTo(map);
+
+});
     
 })
     .catch(error => {
