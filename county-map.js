@@ -53,8 +53,8 @@ window.mapData.msps.forEach(msp => {
 
     L.circleMarker(
         [
-            msp.geometry.coordinates[1],   // latitude
-            msp.geometry.coordinates[0]    // longitude
+            msp.geometry.coordinates[1],
+            msp.geometry.coordinates[0]
         ],
         {
             radius: 5,
@@ -62,7 +62,19 @@ window.mapData.msps.forEach(msp => {
             fillColor: '#0066cc',
             fillOpacity: 1
         }
-    ).addTo(map);
+    )
+    .bindPopup(`
+        <b>${msp.title}</b><br>
+        SAS: ${msp.sas}<br>
+        Band: ${msp.structuralauthorityband}<br>
+        Segment: ${msp.segment}<br>
+        Rating: ${msp.rating} (${msp.user_rating_count} reviews)<br>
+        DA: ${msp.domain_authority}<br>
+        Backlinks: ${msp.backlinks}<br>
+        Pages: ${msp.pages_crawled}<br>
+        Link Propensity: ${msp.link_propensity}
+    `)
+    .addTo(map);
 
 });
     
