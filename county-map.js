@@ -100,7 +100,6 @@ window.mapData.msps.forEach(msp => {
 
 });   // <-- closes the forEach()
 
-})      // <-- closes the .then(data => { ... })
 
 // ------------------------------------------------------
 // Legend
@@ -182,6 +181,8 @@ legend.onAdd = function () {
 
 legend.addTo(map);
 
+
+})      // <-- closes the .then(data => { ... })    
     
 .catch(error => {
     console.error('Map data error:', error);
