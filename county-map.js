@@ -66,7 +66,10 @@ L.geoJSON(window.mapData.commercialCore.geometry, {
     }
 
 }).addTo(map);
-console.log(window.mapData.msps[0]);    
+    
+console.log(window.mapData.msps[0]);
+const clusters = L.markerClusterGroup();
+    
 window.mapData.msps.forEach(msp => {
 
     L.circleMarker(
@@ -96,7 +99,7 @@ window.mapData.msps.forEach(msp => {
     direction: 'top',
     opacity: 0.95
 })
-.addTo(map);
+.addTo(clusters);
 
 });   // <-- closes the forEach()
 
