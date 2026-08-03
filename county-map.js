@@ -78,7 +78,7 @@ window.mapData.msps.forEach(msp => {
             msp.geometry.coordinates[0]
         ],
         {
-            radius: Math.max(3, msp.sas / 10),
+            radius: Math.max(6, msp.sas / 8),
             color: msp.band_color,
             fillColor: msp.band_color,
             fillOpacity: 1
