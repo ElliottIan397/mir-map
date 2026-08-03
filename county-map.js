@@ -104,8 +104,8 @@ window.mapData.msps.forEach(msp => {
     Band: ${msp.structuralauthorityband}<br>
     Rating: ${msp.rating} (${msp.user_rating_count} reviews)<br>
     DA: ${msp.domain_authority}<br>
-    Backlinks: ${msp.backlinks.toLocaleString()}<br>
-    Pages: ${msp.pages_crawled.toLocaleString()}<br>
+    Backlinks: ${Number(msp.backlinks).toLocaleString()}<br>
+    Pages: ${Number(msp.pages_crawled).toLocaleString()}<br>
     Link Propensity: ${(Number(msp.link_propensity) * 100).toFixed(4)}%
 `, {
     sticky: true,
