@@ -156,7 +156,31 @@ legend.onAdd = function () {
 
         <br>
 
-        <b>Structural Authority Band</b><br>
+        <br>
+
+        <b>MSP Clusters</b><br>
+
+        <div style="margin-top:6px;">
+            <span style="
+                display:inline-block;
+                width:22px;
+                height:22px;
+                line-height:22px;
+                border-radius:50%;
+                background:#f4c542;
+                color:#000;
+                font-weight:bold;
+                text-align:center;
+                margin-right:8px;
+                font-size:11px;
+        ">5</span>
+
+        5 clustered MSPs
+</div>
+
+<br>
+
+        <b>Structural Authority Band (SAB)</b><br>
 
         <div><span style="color:#8b0000;">&#9679;</span> No Growth Foundation</div>
         <div><span style="color:#f44336;">&#9679;</span> Early Foundation</div>
@@ -166,7 +190,7 @@ legend.onAdd = function () {
 
         <br>
 
-        <b>Marker Size</b><br>
+        <b>Structural Authority Score (SAS)</b><br>
 
         <div>
             <span style="font-size:8px;">&#9679;</span>
