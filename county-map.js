@@ -1,4 +1,4 @@
-// ------------------------------------------------------
+/// ------------------------------------------------------
 // Digitol MIR Map Prototype
 // Denver, Colorado
 // ------------------------------------------------------
@@ -20,3 +20,16 @@ L.tileLayer(
         maxZoom: 20
     }
 ).addTo(map);
+
+// ------------------------------------------------------
+// Retrieve MIR JSON
+// ------------------------------------------------------
+
+fetch('https://gis-dev.digitolservices.com/webhook/mir-map')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Map data error:', error);
+    });
