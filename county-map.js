@@ -247,7 +247,7 @@ legend.onAdd = function () {
 
 <br>
 
-        <b>Structural Authority Band (SAB)</b><br>
+        <b>Search Authority Band (SAB)</b><br>
 
         <div><span style="color:#8b0000;">&#9679;</span> No Growth Foundation</div>
         <div><span style="color:#f44336;">&#9679;</span> Early Foundation</div>
@@ -257,7 +257,7 @@ legend.onAdd = function () {
 
         <br>
 
-        <b>Structural Authority Score (SAS)</b><br>
+        <b>Search Authority Score (SAS)</b><br>
 
         <div>
             <span style="font-size:8px;">&#9679;</span>
