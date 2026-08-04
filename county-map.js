@@ -1,24 +1,73 @@
 // ======================================================
-// PRODUCTION WRAPPER (Phase 2)
-// Uncomment when integrating into the MIR template.
-//
-// const mapContainer = document.getElementById("market-map");
-//
-// if (!mapContainer) {
-//     return;
-// }
-//
-// async function initializeCountyMap() {
-//
+// DIGITOL MIR MAP LOADER
 // ======================================================
 
+(async function () {
 
-/// ------------------------------------------------------
-// Digitol MIR Map Prototype
-// Denver, Colorado
-// ------------------------------------------------------
+    const mapDiv = document.getElementById("market-map");
 
-const map = L.map('map');
+    // Normal pages do not contain a map placeholder.
+    if (!mapDiv) {
+        return;
+    }
+
+    const reportId = mapDiv.dataset.reportId;
+
+    if (!reportId) {
+        console.error("MIR map error: data-report-id is missing.");
+        return;
+    }
+
+    console.log("MIR Map Report ID:", reportId);
+
+    // --------------------------------------------------
+    // Dependency loaders
+    // --------------------------------------------------
+
+    function loadCSS(id, href) {
+        return new Promise((resolve, reject) => {
+
+            if (document.getElementById(id)) {
+                resolve();
+                return;
+            }
+
+            const link = document.createElement("link");
+
+            link.id = id;
+            link.rel = "stylesheet";
+            link.href = href;
+            link.onload = resolve;
+            link.onerror = () =>
+                reject(new Error(`Unable to load stylesheet: ${href}`));
+
+            document.head.appendChild(link);
+        });
+    }
+
+    function loadScript(id, src) {
+        return new Promise((resolve, reject) => {
+
+            if (document.getElementById(id)) {
+                resolve();
+                return;
+            }
+
+            const script = document.createElement("script");
+
+            script.id = id;
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = () =>
+                reject(new Error(`Unable to load script: ${src}`));
+
+            document.head.appendChild(script);
+        });
+    }
+
+    async function initializeCountyMap() {
+
+        const map = L.map(mapDiv);
 
 // ------------------------------------------------------
 // Carto Positron Basemap
@@ -37,8 +86,13 @@ L.tileLayer(
 // Retrieve MIR JSON
 // ------------------------------------------------------
 
-fetch('https://gis-dev.digitolservices.com/webhook/mir-map')
-    .then(response => response.json())
+fetch(`https://automation.digitolservices.com/webhook/mir-map?report_id=${encodeURIComponent(reportId)}`)
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+    return response.json();
+})
 .then(data => {
     window.mapData = data;
     console.log(window.mapData);
@@ -227,13 +281,47 @@ legend.addTo(map);
     
 .catch(error => {
     console.error('Map data error:', error);
-});
+    }); 
+    
+    }// closes initializeCountyMap()
 
-// ======================================================
-// PHASE 2
-//
-// }
-//
-// initializeCountyMap();
-//
-// ======================================================
+    try {
+
+        // Leaflet and MarkerCluster styles
+        await Promise.all([
+            loadCSS(
+                "digitol-leaflet-css",
+                "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            ),
+            loadCSS(
+                "digitol-markercluster-css",
+                "https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+            ),
+            loadCSS(
+                "digitol-markercluster-default-css",
+                "https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+            )
+        ]);
+
+        // Leaflet must load before MarkerCluster
+        if (!window.L) {
+            await loadScript(
+                "digitol-leaflet-js",
+                "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            );
+        }
+
+        if (!window.L.markerClusterGroup) {
+            await loadScript(
+                "digitol-markercluster-js",
+                "https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
+            );
+        }
+
+        await initializeCountyMap();
+
+    } catch (error) {
+        console.error("MIR map initialization error:", error);
+    }
+
+})(); // closes MIR map loader
