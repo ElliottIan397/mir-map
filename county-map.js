@@ -242,7 +242,7 @@ legend.onAdd = function () {
                 font-size:11px;
         ">5</span>
 
-        5 clustered MSPs
+        Clustered MSPs - Click to Expand
 </div>
 
 <br>
